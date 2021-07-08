@@ -13,13 +13,16 @@ def houseHunting():
     currentSavings = 0
     investmentPerc = 0.04
     portionSaved = float(input('Enter the percentage of your salary to save, as a decimal: '))
-    monthlySaving = monthlySalary * portionSaved
-    print('Your monthly savings will be %.2f' % (monthlySaving))
+    # monthlySaving = monthlySalary * portionSaved
+    # print('Your monthly savings will be %.2f' % (monthlySaving))
 
     month = 0
     while currentSavings < downPayment:
+        monthlySaving = monthlySalary * portionSaved
         currentSavings += monthlySaving + (currentSavings * investmentPerc / 12)
         month += 1
+        if month % 6 == 0:
+            monthlySalary += (monthlySalary * semiAnnualSalaryRaise)
 
     print('Number of months to get your dream home: %.2f' % (month))
     print('The current savings are %d' % (currentSavings))

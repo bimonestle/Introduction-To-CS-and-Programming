@@ -16,13 +16,28 @@ def houseHunting():
     target = 36
     bisectionSteps = 0
     portionSaved = 10000
-    while month < target:
-        decimalPortion = portionSaved / 10000
+    low = 0
+    high = portionSaved
+    guess = (high + low) / 2
+    while currentSavings < downPayment:
+        decimalPortion = guess / 10000
         monthlySaving = monthlySalary * decimalPortion
         currentSavings += monthlySaving + (currentSavings * investmentPerc / 12)
         
-        if month < target and monthlySaving > downPayment:
+        if month < target:
+            if currentSavings > downPayment:
+                currentSavings = 0
+                month = 0
+                high = guess
+                guess = (high + low) / 2
+                bisectionSteps += 1
+            else:
+                continue
+        else:
+            low = guess
+            guess = (high + low) / 2
             bisectionSteps += 1
+
 
         month += 1
         if month % 6 == 0:
@@ -30,6 +45,7 @@ def houseHunting():
 
 
     print('Number of months to get your dream home: %.2f' % (month))
+    print(guess)
     print('The current savings are %d' % (currentSavings))
 
 houseHunting()

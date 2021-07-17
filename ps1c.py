@@ -36,41 +36,27 @@ def houseHunting():
         print('Month: %d' % (month))
         print("Bisection steps: %d" % (bisectionSteps))
 
-        month += 1
-        if month % 6 == 0:
-            monthlySalary += (monthlySalary * semiAnnualSalaryRaise)
-
         if month == (target - 1):
             if currentSavings > downPayment:
                 break
             else:
                 currentSavings = 0
                 month = 0
-                high = guess
+                low = guess
                 guess = (high + low) / 2
                 bisectionSteps += 1
                 monthlySalary = annualSalary / 12
         elif month >= target:
             currentSavings = 0
             month = 0
-            low = guess
+            high = guess
             guess = (high + low) / 2
             bisectionSteps += 1
             monthlySalary = annualSalary / 12
-        
-        # if currentSavings > downPayment:
-        #     currentSavings = 0
-        #     high = guess
-        #     month = 0
-        #     guess = (high + low) / 2
-        #     bisectionSteps += 1
-        # else:
-        #     if month > (target - 1):
-        #         currentSavings = 0
-        #         low = guess
-        #         month = 0
-        #         guess = (high + low) / 2
-        #         bisectionSteps += 1
+
+        month += 1
+        if month % 6 == 0:
+            monthlySalary += (monthlySalary * semiAnnualSalaryRaise)
 
     print('Number of months to get your dream home: %.2f' % (month))
     print('The current savings are %d' % (currentSavings))

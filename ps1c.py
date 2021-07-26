@@ -24,6 +24,7 @@ def houseHunting():
         print('Monthly Salary: %d' % (monthlySalary))
         print('The guess rate: %d' % (guess))
         if guess == rate:
+            print('It is not possible to pay the down payment in three years.')
             break
 
         decimalRate = guess / 10000
@@ -69,11 +70,8 @@ def houseHunting():
         if month % 6 == 0:
             monthlySalary += (monthlySalary * semiAnnualSalaryRaise)
 
-    if guess == rate:
-        print('It is not possible to pay the down payment in three years.')
-    else:
-        print('Number of months to get your dream home: %.2f' % (month - 1))
-        print('The current savings are %d' % (currentSavings))
-        print('The best rate is %.4f' % (guess / 10000))
+    print('Number of months to get your dream home: %d months' % (month + 1))
+    print('The current savings are %d' % (currentSavings))
+    print('The best rate is %.4f' % (guess / 10000))
 
 houseHunting()

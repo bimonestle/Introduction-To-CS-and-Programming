@@ -117,23 +117,19 @@ def hangman(secret_word):
     # FILL IN YOUR CODE HERE AND DELETE "pass"
     pass
     LIVES = 6
-    print('The scret word contains %d characters' % (len(secret_word)))
-    print('Before you begin, you have %d guesses to starts with')
+    print('The secret word contains %d characters' % (len(secret_word)))
+    print('Before you begin, you have %d guesses to starts with' % (LIVES))
 
     while 0 < LIVES:
       print('You have %d guesses left' % (LIVES))
-      user_guess = input('Enter a character to reveal the secret word')
-      if len(user_guess) > 1:
-        user_guess = user_guess[0]
-        print('''Your guess is more than one character.\n
-        Therefore we only take the first character from it.\n
-        The first character is %s\n\n''' % (user_guess))
-
-        if user_guess in secret_word:
-          print('Your guess is in our secret word')
+      user_guess = input('Enter a character to reveal the secret word: ')
+      if user_guess in secret_word:
+        print("%s is in %s. Your guess is at index %d." % (user_guess, secret_word, secret_word.index(user_guess)))
           
       else:
         print('Your guess is %s' %(user_guess))
+        if user_guess in secret_word:
+          print('Your guess is in our secret word')
 
 
 

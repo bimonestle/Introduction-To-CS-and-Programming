@@ -125,13 +125,25 @@ def hangman(secret_word):
     while 0 < LIVES:
       print('You have %d guesses left' % (LIVES))
       user_guess = input('Enter a character to reveal the secret word: ')
+
+      # reveal the index position in secret word.
       revealPos = [index for index, el in enumerate(secret_word) if el == user_guess]
 
+      lstUnrevealed = list(unrevealed)
+      print(lstUnrevealed)
+
       if user_guess in secret_word:
-        print("%s is in the secret word. Your guess is at index %d." % (user_guess, revealPos))
+        print("Congrats! '%s' is in the secret word." % (user_guess))
         # print("%s is in %s. Your guess is at index %d." % (user_guess, secret_word, secret_word.index(user_guess)))
+
+        for idx in revealPos:
+          lstUnrevealed[idx] = user_guess
+          x = "".join(unrevealed)
+
+        print("The secret word: %s" % (x))
           
       else:
+        print('Too bad :( Your guess is incorrect')
         LIVES -= 1
 
 

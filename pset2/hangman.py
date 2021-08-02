@@ -52,7 +52,7 @@ def choose_word(wordlist):
 wordlist = load_words()
 
 
-def is_word_guessed(secret_word, letters_guessed):
+def is_word_guessed(secret_word: str, letters_guessed: list) -> bool:
     '''
     secret_word: string, the word the user is guessing; assumes all letters are
       lowercase
@@ -62,7 +62,14 @@ def is_word_guessed(secret_word, letters_guessed):
       False otherwise
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    count = 0
+    for val in letters_guessed:
+      if val in secret_word:
+        count += 1
+    
+    if count == len(secret_word):
+      return True
+    return False
 
 
 
@@ -115,7 +122,7 @@ def hangman(secret_word):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    # pass
     LIVES = 6
     unrevealed = '*' * len(secret_word)
     print('The secret word contains %d characters' % (len(secret_word)))

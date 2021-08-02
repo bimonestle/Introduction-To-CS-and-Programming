@@ -62,14 +62,15 @@ def is_word_guessed(secret_word: str, letters_guessed: list) -> bool:
       False otherwise
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    count = 0
-    for val in letters_guessed:
-      if val in secret_word:
-        count += 1
+    result = ''
+    for secret_letter in secret_word:
+      if secret_letter in letters_guessed:
+        result = True
+      else:
+        result = False
+        break
     
-    if count == len(secret_word):
-      return True
-    return False
+    return result
 
 
 

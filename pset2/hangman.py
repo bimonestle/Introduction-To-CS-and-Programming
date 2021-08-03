@@ -74,7 +74,7 @@ def is_word_guessed(secret_word: str, letters_guessed: list) -> bool:
 
 
 
-def get_guessed_word(secret_word, letters_guessed):
+def get_guessed_word(secret_word: str, letters_guessed: list) -> str:
     '''
     secret_word: string, the word the user is guessing
     letters_guessed: list (of letters), which letters have been guessed so far
@@ -82,7 +82,20 @@ def get_guessed_word(secret_word, letters_guessed):
       which letters in secret_word have been guessed so far.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    blank = "_ "
+    letters = blank * len(secret_word)
+    lstLetters = list(letters)
+
+    for letter in letters_guessed:
+      if letter in secret_word:
+        for index in range(len(secret_word)):
+          if letter == secret_word[index]:
+            lstLetters.pop(index + 1)
+            lstLetters[index] = letter
+
+            letters = "".join(lstLetters)
+
+
 
 
 
@@ -125,48 +138,56 @@ def hangman(secret_word):
     # FILL IN YOUR CODE HERE AND DELETE "pass"
     # pass
     LIVES = 6
-    unrevealed = '*' * len(secret_word)
-    print('The secret word contains %d characters' % (len(secret_word)))
-    print("Secret word: %s" % (unrevealed))
-    print('Before you begin, you have %d guesses to starts with' % (LIVES))
+    # unrevealed = '*' * len(secret_word)
+    # print('The secret word contains %d characters' % (len(secret_word)))
+    # print("Secret word: %s" % (unrevealed))
+    # print('Before you begin, you have %d guesses to starts with' % (LIVES))
+
+    # while 0 < LIVES:
+    #   print('You have %d guesses left' % (LIVES))
+
+    #   try:
+    #     user_guess = input('Enter a character to reveal the secret word: ')
+
+    #     # reveal the index position in secret word.
+    #     revealPos = [index for index, el in enumerate(secret_word) if el == user_guess]
+
+    #     lstUnrevealed = list(unrevealed)
+    #     print(lstUnrevealed)
+
+    #     if user_guess in secret_word:
+    #       print("Congrats! '%s' is in the secret word." % (user_guess))
+    #       # print("%s is in %s. Your guess is at index %d." % (user_guess, secret_word, secret_word.index(user_guess)))
+
+    #       for idx in revealPos:
+    #         lstUnrevealed[idx] = user_guess
+    #         unrevealed = "".join(lstUnrevealed)
+
+    #         if unrevealed == secret_word:
+    #           print("Congratulations! You have guessed the secret word!!!")
+    #           break
+
+    #       print("The secret word: %s" % (unrevealed))
+            
+    #     else:
+    #       print('Too bad :( Your guess is incorrect')
+    #       print("Your current guess is %s" % (unrevealed))
+    #       LIVES -= 1
+          
+    #   except:
+    #     print("\nYou choose to stop the program")
+    #     break
+
+    # if LIVES < 1:
+    #   print("Your chance is up. The secret word is %s" % (secret_word))
 
     while 0 < LIVES:
-      print('You have %d guesses left' % (LIVES))
-
       try:
-        user_guess = input('Enter a character to reveal the secret word: ')
+        user_guess = input("Please enter your guess: ")
+        get_guessed_word(secret_word, letters_guessed=user_guess)
 
-        # reveal the index position in secret word.
-        revealPos = [index for index, el in enumerate(secret_word) if el == user_guess]
-
-        lstUnrevealed = list(unrevealed)
-        print(lstUnrevealed)
-
-        if user_guess in secret_word:
-          print("Congrats! '%s' is in the secret word." % (user_guess))
-          # print("%s is in %s. Your guess is at index %d." % (user_guess, secret_word, secret_word.index(user_guess)))
-
-          for idx in revealPos:
-            lstUnrevealed[idx] = user_guess
-            unrevealed = "".join(lstUnrevealed)
-
-            if unrevealed == secret_word:
-              print("Congratulations! You have guessed the secret word!!!")
-              break
-
-          print("The secret word: %s" % (unrevealed))
-            
-        else:
-          print('Too bad :( Your guess is incorrect')
-          print("Your current guess is %s" % (unrevealed))
-          LIVES -= 1
-          
       except:
-        print("\nYou choose to stop the program")
-        break
-
-    if LIVES < 1:
-      print("Your chance is up. The secret word is %s" % (secret_word))
+        print("Your program has stopped")
 
 
 
